@@ -30,11 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
     todoList.appendChild(li);
 
     li.addEventListener("click", (e) => {
-      if (e.target.tagName == "BUTTON") return;
+      if (e.target.tagName == "BUTTON") return deleteTask(task);
       task.completed = !task.completed;
       li.classList.toggle("completed");
       save(tasks);
     });
+  }
+
+  function deleteTask(task) {
+    tasks = tasks.filter((t) => t.id !== task.id);
+    const li = document.getElementById(task.id); // type conversion here converts task.id into String if u do "task.id" it searches for id="task.id" instead of id="22332423"
+    li.remove();
+    save(tasks);
   }
 
   function save(tasks) {
