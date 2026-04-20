@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ansh | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#" class="logo">ansh<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#work" class="mob-link">Work</a>
+    <a href="#skills" class="mob-link">Skills</a>
+    <a href="#contact" class="mob-link">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <span class="hero-tag">Full Stack Developer</span>
+    <h1>
+      <span class="line">Building</span>
+      <span class="line"><em>digital</em></span>
+      <span class="line">products.</span>
+    </h1>
+    <p class="hero-sub">
+      CS student at BBDITM, Lucknow — crafting clean, fast, and purposeful web experiences from frontend to backend.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="content" id="about">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Who I am</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="card-num">01</p>
+        <h3>Developer</h3>
+        <p>Building projects with HTML, CSS, JavaScript and working towards full-stack with React and Node.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">02</p>
+        <h3>Student</h3>
+        <p>B.Tech CSE at BBDITM, Lucknow. Learning every day, shipping every week.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">03</p>
+        <h3>Builder</h3>
+        <p>Interested in AI, ML, and creating tools that solve real problems for real people.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="content" id="work">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="card-num">01</p>
+        <h3>CRUD App</h3>
+        <p>A full CRUD application built with vanilla JavaScript. Create, read, update, delete — all client-side.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">02</p>
+        <h3>API Project</h3>
+        <p>Fetching live data from a public API and rendering it dynamically using modern JS techniques.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">03</p>
+        <h3>Weather App</h3>
+        <p>Real-time weather data by city using the OpenWeather API with clean, responsive UI.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">04</p>
+        <h3>Landing Page</h3>
+        <p>A responsive marketing page with animations, hamburger menu, and smooth scroll.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="content" id="skills">
+    <p class="section-label">Stack</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="card-num">Frontend</p>
+        <h3>HTML · CSS · JS</h3>
+        <p>Semantic markup, responsive layouts, vanilla JS, DOM manipulation, Fetch API.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">Learning</p>
+        <h3>React · Node.js</h3>
+        <p>Currently building React projects and preparing to dive into backend development.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">Interests</p>
+        <h3>AI · ML · DSA</h3>
+        <p>Exploring machine learning concepts and sharpening problem-solving with LeetCode.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="content" id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's talk.</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="card-num">Email</p>
+        <h3>ansh@email.com</h3>
+        <p>Best way to reach me for opportunities or collaborations.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">GitHub</p>
+        <h3>github.com/ansh</h3>
+        <p>All my projects and code live here. Feel free to explore.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">LinkedIn</p>
+        <h3>linkedin.com/in/ansh</h3>
+        <p>Connect with me professionally.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">ansh<span>.</span></a>
+        <p>CS student building real things on the internet, one project at a time.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#skills">Skills</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Ansh Vishwakarma. Built with HTML, CSS & JS.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="GitHub">GH</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+        <a href="#" class="social-link" aria-label="Twitter">TW</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+      document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = hamburger.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Back to top
+    document.getElementById('backTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
