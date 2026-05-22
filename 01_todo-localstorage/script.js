@@ -13,17 +13,20 @@ function Task(text) {
 }
 
 addTaskBtn.addEventListener("click", (e) => {
-  let task = new Task(input.value);
-  input.value = "";
+  let text = input.value.trim();
+  if (text) {
+    let task = new Task(input.value);
+    input.value = "";
 
-  Tasks.push(task);
-  const li = document.createElement("li");
-  li.id = task.id;
-  li.innerHTML = `<span> ${task.text} </span> <button> delete </button>`;
-  todoList.append(li);
-  console.log(todoList);
+    Tasks.push(task);
+    const li = document.createElement("li");
+    li.id = task.id;
+    li.innerHTML = `<span> ${task.text} </span> <button> delete </button>`;
+    todoList.append(li);
+    console.log(todoList);
 
-  save(Tasks);
+    save(Tasks);
+  }
 });
 
 todoList.addEventListener("click", (e) => {
