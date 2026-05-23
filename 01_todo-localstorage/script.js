@@ -15,7 +15,7 @@ function Task(text) {
 addTaskBtn.addEventListener("click", (e) => {
   let text = input.value.trim();
   if (text) {
-    let task = new Task(input.value);
+    let task = new Task(text);
     input.value = "";
 
     Tasks.push(task);
