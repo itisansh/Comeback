@@ -35,7 +35,7 @@ todoList.addEventListener("click", (e) => {
   const listItem = e.target.closest("li");
   if (e.target.tagName === "BUTTON") {
     li.remove();
-    Tasks = Tasks.filter((t) => t.id != li.id);
+    Tasks = Tasks.filter((t) => t.id !== Number(li.id));
     save(Tasks);
   } else {
     listItem.classList.toggle("completed");
