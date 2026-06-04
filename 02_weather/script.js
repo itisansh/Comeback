@@ -20,15 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
     getWeatherBtn.disabled = true;
 
     try {
+      // weatherData or response is a PROMISE!! if we dont use await it simply returns a pending promise
+      //every single promise is in a pending stage, to handle the promise we have put it inside try catch we could also do .then.catch chains
+      // this weatherData is JSON version of response
       const weatherData = await getWeatherData(city);
       console.log(weatherData);
 
-      if (!weatherData.ok) throw new Error("no data found");
-
-      const data = await weatherData.json();
-      console.log(data);
-
-      displayWeather(data);
+      displayWeather(weatherData);
     } catch (error) {
       showError();
     } finally {
@@ -38,28 +36,36 @@ document.addEventListener("DOMContentLoaded", () => {
       getWeatherBtn.disabled = false;
     }
   });
+
   // Enter key click karne pe it works
   cityInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") getWeatherBtn.click();
   });
 
+  // this async fucntion gets the data from server and converts that response into a usable JSON
   async function getWeatherData(city) {
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
     const response = await fetch(URL);
 
-    return response;
+    // better way of throwing error is to check at the same time it occurs
+    if (!response.ok) throw new Error("no data found");
+
+    const data = await response.json();
+    console.log(data);
+
+    return data;
   }
 
-  function displayWeather(data) {
+  function displayWeather(weatherData) {
     weatherInfo.classList.remove("hidden");
     errorMessage.classList.add("hidden");
 
     // data has temp in kelvin
-    let temp = data.main.temp - 273;
+    let temp = weatherData.main.temp - 273;
     // now showing till only 2 decimal places
     temperature.textContent = `${temp.toFixed(2)} C`;
-    description.textContent = `${data.weather[0].description}`;
-    cityName.textContent = `${data.name}`;
+    description.textContent = `${weatherData.weather[0].description}`;
+    cityName.textContent = `${weatherData.name}`;
   }
 
   function showError() {
