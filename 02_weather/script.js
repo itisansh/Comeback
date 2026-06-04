@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const API_KEY = "f229eb16c605fd3d73067d49bae7a28a";
 
+  // use JSON formatter to understand a response from API
   getWeatherBtn.addEventListener("click", async (e) => {
     const city = cityInput.value.trim();
     if (!city) return;
@@ -59,6 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayWeather(data) {
     weatherInfo.classList.remove("hidden");
     errorMessage.classList.add("hidden");
+
+    //shorter version,  destructuring the data!!!
+    // const {name, main, temp} =data;    
+   //JavaScript automatically does:
+
+// const name = data.name;
+// const main = data.main;
 
     // data has temp in kelvin
     let temp = data.main.temp - 273;
