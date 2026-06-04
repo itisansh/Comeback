@@ -56,16 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   }
 
-  function displayWeather(weatherData) {
+  function displayWeather(data) {
     weatherInfo.classList.remove("hidden");
     errorMessage.classList.add("hidden");
 
     // data has temp in kelvin
-    let temp = weatherData.main.temp - 273;
+    let temp = data.main.temp - 273;
     // now showing till only 2 decimal places
     temperature.textContent = `${temp.toFixed(2)} C`;
-    description.textContent = `${weatherData.weather[0].description}`;
-    cityName.textContent = `${weatherData.name}`;
+    description.textContent = `${data.weather[0].description}`;
+    cityName.textContent = `${data.name}`;
   }
 
   function showError() {
