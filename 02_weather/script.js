@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
       showError();
     }
   });
+// Enter key click karne pe it works 
+  cityInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") getWeatherBtn.click();
+});
 
   async function getWeatherData(city) {
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
