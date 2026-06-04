@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!city) return;
     cityInput.value = "";
 
+    //shows UI of loading
+    getWeatherBtn.textContent = "Loading...";
+    //btn cant be clicked till fething data is completed
+    getWeatherBtn.disabled = true;
+
     try {
       const weatherData = await getWeatherData(city);
       console.log(weatherData);
@@ -26,12 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
       displayWeather(data);
     } catch (error) {
       showError();
+    } finally {
+      //shows what it supose to show before and after fetching
+      getWeatherBtn.textContent = "Get Weather";
+      // enables the btn to be clicked again
+      getWeatherBtn.disabled = false;
     }
   });
-// Enter key click karne pe it works 
+  // Enter key click karne pe it works
   cityInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") getWeatherBtn.click();
-});
+    if (e.key === "Enter") getWeatherBtn.click();
+  });
 
   async function getWeatherData(city) {
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
