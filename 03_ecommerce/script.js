@@ -10,19 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   products.push({
     name: "Product 1",
-    id: Date.now(),
+    id: 1,
     price: "10$",
   });
 
   products.push({
     name: "Product 2",
-    id: Date.now(),
+    id: 2,
     price: "20$",
   });
 
   products.push({
     name: "Product 3",
-    id: Date.now(),
+    id: 3,
     price: "50$",
   });
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   productList.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
-      // const div = e.target.closest("div");
+      // const div = e.target.closest("div")
 
       const id = parseInt(e.target.getAttribute("id"));
       products.forEach((item) => {
@@ -48,11 +48,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  cartItems.addEventListener("click", async (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const div = e.target.closest("div");
+      div.remove();
+      totalCartPrice();
+      // if (cartItems.textContent.trim() == "") {
+      //   emptyCart.classList.remove("hidden");
+      // }
+      //doesnt work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      if (cartItems.children.length === 0) {
+        emptyCart.classList.remove("hidden");
+      }
+    }
+  });
+
   function renderCartItems(item) {
     emptyCart.classList.add("hidden");
+    cartTotal.classList.remove("hidden");
 
     const div = document.createElement("div");
-    div.innerHTML = `<span> ${item.name} </span> <span>${item.price}</span>`;
+    div.innerHTML = `<span> ${item.name} </span> <span class="price">${item.price}</span> <button id="${item.id}">Remove</button>`;
+    div.classList.add("cartItem");
     cartItems.appendChild(div);
+    totalCartPrice();
+  }
+
+  function totalCartPrice() {
+    let sum = 0;
+    const spans = cartItems.querySelectorAll("span.price");
+
+    spans.forEach((element) => {
+      sum += parseInt(element.textContent);
+    });
+
+    totalPrice.innerHTML = `$ ${sum}`;
   }
 });

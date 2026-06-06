@@ -64,6 +64,31 @@ h2 {
   text-align: right;
 }
 
+.cartItem {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: darkgray;
+  border-radius: 7px;
+  max-width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cartItem button {
+  background-color: lightcoral;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cartItem button:hover {
+  background-color: red;
+}
+
+
 #checkout-btn {
   background-color: #6200ea;
   border: none;
