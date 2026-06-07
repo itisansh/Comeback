@@ -11,19 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
   products.push({
     name: "Product 1",
     id: 1,
-    price: "10$",
+    price: 10,
   });
 
   products.push({
     name: "Product 2",
     id: 2,
-    price: "20$",
+    price: 20,
   });
 
   products.push({
     name: "Product 3",
     id: 3,
-    price: "50$",
+    price: 50,
   });
 
   renderProductList(products);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     products.forEach((item) => {
       const div = document.createElement("div");
       div.classList.add("product");
-      div.innerHTML = `<span> ${item.name} </span> <span>${item.price}</span> <button id="${item.id}"> Add </button>`;
+      div.innerHTML = `<span> ${item.name} </span> <span>$${item.price}</span> <button id="${item.id}"> Add </button>`;
       productList.appendChild(div);
     });
   }
@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
       //   emptyCart.classList.remove("hidden");
       // }
       //doesnt work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      if (cartItems.children.length === 0) {
+      // because cartItem has 1 element <p> empty-cart so children are always +1
+
+      if (cartItems.children.length === 1) {
         emptyCart.classList.remove("hidden");
       }
     }
