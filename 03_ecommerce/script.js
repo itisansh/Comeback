@@ -70,12 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cartTotal.classList.remove("hidden");
 
     const div = document.createElement("div");
-    div.innerHTML = `<span> ${item.name} </span> <span class="price">${item.price}</span> <button id="${item.id}">Remove</button>`;
+    div.innerHTML = `<span> ${item.name} </span> <span class="price">${item.price}</span> <button id=${item.id}>Remove</button>`;
     div.classList.add("cartItem");
     cartItems.appendChild(div);
     totalCartPrice();
   }
 
+  // instead of looping through the DOM and calculating price make Array of CartList this will also make sure that multiple cart items dont appear multiple times in dom
   function totalCartPrice() {
     let sum = 0;
     const spans = cartItems.querySelectorAll("span.price");
