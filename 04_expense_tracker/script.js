@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   }
 
   expenseForm.addEventListener("submit", (e) => {
-    //MOST IMPORTANT IN FORM PREVENT DEFAULT BEHAVIOUR OF REFRESHING
+    //MOST IMPORTANT, PREVENT DEFAULT BEHAVIOUR OF FORM FROM REFRESHING THE PAGE AFTER SUBMITTION
     e.preventDefault();
     const amount = parseFloat(expenseAmount.value);
     const name = expenseName.value.trim();
@@ -24,13 +24,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
     if (name !== "" && !isNaN(amount) && amount > 0) {
       const expense = new Expense(amount, name);
 
-      expenseList.push(expense);
+      if (!checkDuplicate(expense)) {
+        expenseList.push(expense);
 
+        renderExpenses();
+        saveExpenses();
+      }
       expenseAmount.value = "";
       expenseName.value = "";
-
-      renderExpenses();
-      saveExpenses();
     }
   });
 
@@ -59,13 +60,23 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   function totalPriceDisplay() {
     const totalPrice = calculateTotalPrice();
-    totalAmount.textContent = totalPrice;
+    totalAmount.textContent = totalPrice.toFixed(2);
   }
 
   function calculateTotalPrice() {
-    return expenseList.reduce((sum, expense) => {
-      return sum + expense.amount;
-    }, 0);
+    return expenseList.reduce((sum, expense) => sum + expense.amount, 0);
+  }
+
+  // we can use .some method too
+  function checkDuplicate(expense) {
+    let count = 0;
+    expenseList.forEach((element) => {
+      if (element.amount == expense.amount && element.name == expense.name)
+        alert("duplicate found");
+      count = 1;
+    });
+    if (count === 1) return true;
+    else return false;
   }
 
   function saveExpenses() {
