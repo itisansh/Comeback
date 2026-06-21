@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartBtn = document.getElementById("restart-btn");
   const startBtn = document.getElementById("start-btn");
 
+  const FEEDBACK_DELAY = 200;
+
   let score = 0;
   let currentQuestionIndex = 0;
 
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.classList.add("hidden");
     resultContainer.classList.add("hidden"); // dikkat hogi
     questionContainer.classList.remove("hidden");
-    
+
     displayQues();
   }
   function displayQues() {
@@ -56,29 +58,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
       //IMP WE KNOW WE CANT CALL A FN INSDIE A EVENT LISTENER BUT WE WANT TO PASS SOME VALUE AS AN ARGUEMENT SO WE USE CALLBACK FUNCTION
       li.addEventListener("click", (e) => selectChoice(choice, e));
-
-      function selectChoice(choice, e) {
-        const closestLi = e.target.closest("li");
-        console.log(e);
-        console.log(closestLi);
-
-        closestLi.classList.add("selected");
-        console.log(closestLi.classList);
-
-        setTimeout(() => {
-          const correctChoice = questions[currentQuestionIndex].answer;
-          if (choice === correctChoice) {
-            score++;
-          }
-          currentQuestionIndex++;
-          if (currentQuestionIndex < questions.length) {
-            showQuestions();
-          } else {
-            showResult();
-          }
-        }, 200);
-      }
     });
+  }
+  function selectChoice(choice, e) {
+    const closestLi = e.target.closest("li");
+    console.log(e);
+    console.log(closestLi);
+
+    closestLi.classList.add("selected");
+    console.log(closestLi.classList);
+
+    setTimeout(() => {
+      const correctChoice = questions[currentQuestionIndex].answer;
+      if (choice === correctChoice) {
+        closestLi.classList.add("correct");
+        score++;
+      } else {
+        closestLi.classList.add("incorrect");
+      }
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestions();
+      } else {
+        showResult();
+      }
+    }, FEEDBACK_DELAY);
   }
 
   restartBtn.addEventListener("click", () => {

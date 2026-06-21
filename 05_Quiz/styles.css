@@ -44,12 +44,20 @@ li {
 }
 
 /* IMP FIRST TIME USED THIS */
-li:not(.selected):hover {
+li:not(.selected .incorrect .correct):hover {
   background-color: #6200ea;
 }
 
 .selected{
   background-color: #5957ee;
+}
+
+.correct{
+  background-color: lightgreen;
+}
+
+.incorrect{
+  background-color: rgb(232, 50, 50);
 }
 
 button {
