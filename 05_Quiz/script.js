@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.classList.add("hidden");
     resultContainer.classList.add("hidden"); // dikkat hogi
     questionContainer.classList.remove("hidden");
-    restartBtn.classList.remove("hidden");
-
+    
     displayQues();
   }
   function displayQues() {
