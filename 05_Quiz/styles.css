@@ -43,8 +43,13 @@ li {
   transition: background-color 0.3s;
 }
 
-li:hover {
+/* IMP FIRST TIME USED THIS */
+li:not(.selected):hover {
   background-color: #6200ea;
+}
+
+.selected{
+  background-color: #5957ee;
 }
 
 button {
