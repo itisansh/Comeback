@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const startBtn = document.getElementById("start-btn");
-  const nextBtn = document.getElementById("next-btn");
-  const restartBtn = document.getElementById("restart-btn");
   const questionContainer = document.getElementById("question-container");
   const questionText = document.getElementById("question-text");
-  const choicesList = document.getElementById("choices-list");
+  const choiceList = document.getElementById("choices-list");
+  const nextBtn = document.getElementById("next-btn");
   const resultContainer = document.getElementById("result-container");
   const scoreDisplay = document.getElementById("score");
+  const restartBtn = document.getElementById("restart-btn");
+  const startBtn = document.getElementById("start-btn");
+
+  let score = 0;
+  let currentQuestionIndex = 0;
 
   const questions = [
     {
@@ -31,57 +34,66 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  let currentQuestionIndex = 0;
-  let score = 0;
+  // YOU DONT CALL FN INSIDE EVENT LISTENER ONLY GIVE REFERENCE TO IT AS IT ONLY CALLS FN IF EVENT HAPPENS
+  startBtn.addEventListener("click", showQuestions);
 
-  startBtn.addEventListener("click", startQuiz);
-
-  nextBtn.addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      showQuestion();
-    } else {
-      showResult();
-    }
-  });
-
-  restartBtn.addEventListener("click", () => {
-    currentQuestionIndex = 0;
-    score = 0;
-    resultContainer.classList.add("hidden");
-    startQuiz();
-  });
-
-  function startQuiz() {
+  function showQuestions() {
     startBtn.classList.add("hidden");
-    resultContainer.classList.add("hidden");
+    resultContainer.classList.add("hidden"); // dikkat hogi
     questionContainer.classList.remove("hidden");
-    showQuestion();
-  }
+    restartBtn.classList.remove("hidden");
 
-  function showQuestion() {
-    nextBtn.classList.add("hidden");
+    displayQues();
+  }
+  function displayQues() {
+    choiceList.innerHTML = "";
+    questionText.textContent = "";
+
     questionText.textContent = questions[currentQuestionIndex].question;
-    choicesList.innerHTML = ""; //clear previous choices
     questions[currentQuestionIndex].choices.forEach((choice) => {
       const li = document.createElement("li");
       li.textContent = choice;
-      li.addEventListener("click", () => selectAnswer(choice));
-      choicesList.appendChild(li);
+      choiceList.appendChild(li);
+
+      //IMP WE KNOW WE CANT CALL A FN INSDIE A EVENT LISTENER BUT WE WANT TO PASS SOME VALUE AS AN ARGUEMENT SO WE USE CALLBACK FUNCTION
+      li.addEventListener("click", (e) => selectChoice(choice, e));
+
+      function selectChoice(choice, e) {
+        const closestLi = e.target.closest("li");
+        console.log(e);
+        console.log(closestLi);
+
+        closestLi.classList.add("selected");
+        console.log(closestLi.classList);
+
+        setTimeout(() => {
+          const correctChoice = questions[currentQuestionIndex].answer;
+          if (choice === correctChoice) {
+            score++;
+          }
+          currentQuestionIndex++;
+          if (currentQuestionIndex < questions.length) {
+            showQuestions();
+          } else {
+            showResult();
+          }
+        }, 200);
+      }
     });
   }
 
-  function selectAnswer(choice) {
-    const correctAnswer = questions[currentQuestionIndex].answer;
-    if (choice === correctAnswer) {
-      score++;
-    }
-    nextBtn.classList.remove("hidden");
-  }
+  restartBtn.addEventListener("click", () => {
+    restartBtn.classList.add("hidden");
+    score = 0;
+    currentQuestionIndex = 0;
+    showQuestions();
+  });
 
   function showResult() {
-    questionContainer.classList.add("hidden");
     resultContainer.classList.remove("hidden");
-    scoreDisplay.textContent = `${score} out of ${questions.length}`;
+    questionContainer.classList.add("hidden");
+    restartBtn.classList.remove("hidden");
+
+    scoreDisplay.textContent = score;
   }
 });
