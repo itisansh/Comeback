@@ -20,13 +20,15 @@ document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
     const amount = parseFloat(expenseAmount.value);
     const name = expenseName.value.trim();
-
+    // console.log(amount);
+    
     if (name !== "" && !isNaN(amount) && amount > 0) {
       const expense = new Expense(amount, name);
 
       if (!checkDuplicate(expense)) {
         expenseList.push(expense);
-
+        console.log(amount);
+        
         renderExpenses();
         saveExpenses();
       }
@@ -71,9 +73,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
   function checkDuplicate(expense) {
     let count = 0;
     expenseList.forEach((element) => {
-      if (element.amount == expense.amount && element.name == expense.name)
+      if (element.amount == expense.amount && element.name == expense.name){
+
         alert("duplicate found");
-      count = 1;
+        count = 1;
+      }
     });
     if (count === 1) return true;
     else return false;
